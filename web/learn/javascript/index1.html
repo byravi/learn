@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background-color: #f9fafb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .container {
+        border: 1px solid black;
+        border: none;
+        border-radius: 5px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 10px rgb(0 0 0 / 30%);
+        width: 400px;
+      }
+      form label {
+        color: #777;
+        margin-bottom: 5px;
+        display: block;
+      }
+      .container form {
+        margin-left: 38px;
+        margin-right: 38px;
+      }
+      h2 {
+        text-align: center;
+      }
+      form input {
+        border: 2px solid #f0f0f0;
+        border-radius: 4px;
+        width: 95%;
+        height: 39px;
+        display: block;
+        font-size: 14px;
+        padding-left: 10px;
+        margin-bottom: 27px;
+      }
+      input:focus {
+        outline: none;
+      }
+      #show {
+        width: auto;
+        border: none;
+        height: auto;
+        padding-left: 0px;
+        margin-bottom: 26px;
+        margin-top: 0px;
+        display: inline;
+      }
+      #passw {
+        margin-bottom: 10px;
+      }
+      span {
+        font-size: 13px;
+      }
+      .button {
+        background-color: #3498db;
+        border: 2px solid #3498db;
+        border-radius: 4px;
+        color: #fff;
+        display: block;
+        font-size: 16px;
+        width: 100%;
+        height: 39px;
+        margin-bottom: 31px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Register With Us</h2>
+      <form>
+        <label for="uname">User name</label>
+        <input
+          type="text"
+          id="ename"
+          name="uname"
+          onkeyup="usernameSubmission()"
+          placeholder="Enter username"
+        />
+
+        <label for="">Email</label>
+        <input
+          type="text"
+          id="email"
+          name="email"
+          onkeyup="emailValidation()"
+          placeholder="Email email"
+        />
+
+        <label for="passw">Password</label>
+        <input
+          type="password"
+          id="passw"
+          name="password"
+          onkeyup="passwordSubmission()"
+          placeholder="Enter password"
+        />
+        <input type="checkbox" id="show" onclick="showPassword()" /><span
+          >Show Password</span
+        >
+
+        <label for="cpassw">Confirm Password</label>
+        <input
+          type="password"
+          id="cpass"
+          name="cpassword"
+          onkeydown="passwordValidation()"
+          placeholder="Enter password again"
+        />
+        <!-- <button type="button" class="button" onclick="submitForm()">
+          Submit
+        </button> -->
+      </form>
+    </div>
+    <script>
+      var username = document.getElementById("ename");
+      var passwordText = document.getElementById("passw");
+      var cnfrmpasswordText = document.getElementById("cpass");
+      var emailid = document.getElementById("email");
+      function usernameSubmission() {
+        if (username.value.length < 3) {
+          username.style.borderColor = "red";
+        } else {
+          username.style.borderColor = "green";
+        }
+      }
+      function emailValidation() {
+        result = emailid.value.match("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$");
+
+        if (result != emailid.value) {
+          emailid.style.borderColor = "red";
+        } else {
+          emailid.style.borderColor = "green";
+        }
+      }
+      function passwordSubmission() {
+        if (passwordText.value.length < 6) {
+          passwordText.style.borderColor = "red";
+        } else {
+          passwordText.style.borderColor = "green";
+        }
+      }
+      function showPassword() {
+        if (passwordText.type === "password") {
+          passwordText.type = "text";
+        } else {
+          passwordText.type = "password";
+        }
+      }
+      function passwordValidation() {
+        if (passwordText.value == cnfrmpasswordText.value) {
+          cnfrmpasswordText.style.borderColor = "green";
+        } else {
+          cnfrmpasswordText.style.borderColor = "red";
+        }
+      }
+    </script>
+  </body>
+</html>

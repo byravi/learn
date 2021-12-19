@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .card {
+        border: 2px solid black;
+        border-radius: 12px;
+        width: 350px;
+      }
+      .card-header {
+        background: #f53b2e;
+        height: 50px;
+        padding: 10px;
+        border-radius: 10px 10px 0px 0px;
+      }
+      .main-content {
+        display: flex;
+        background: #bf2c22;
+      }
+
+      .main-content p {
+        margin: 0;
+        background: #bf2c22;
+        padding: 10px;
+        color: #f0f8ff;
+        font-size: 13px;
+      }
+      .main-content img {
+        padding-left: 67px;
+      }
+      .card-footer p {
+        background: #f53b2e;
+        margin: 0;
+        padding: 10px;
+        font-size: 18px;
+        border-radius: 0px 0px 10px 10px;
+      }
+      button {
+        width: 200px;
+        border-radius: 10px;
+        background: linear-gradient(to right, #ed0000, #bf0000);
+        box-shadow: 0 5px 3px rgba(255, 255, 255, 0.5) inset,
+          5px 5px 5px rgb(65, 63, 63);
+        justify-content: center;
+        margin: 120px;
+      }
+      button p {
+        font-size: 13px;
+        letter-spacing: 1px;
+        color: #aa261d;
+        font-weight: 900;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="card-header">
+        <h2>Chris Mills</h2>
+      </div>
+      <div class="main-content">
+        <p>
+          50 My Street<br />
+          The Town<br />
+          Gray Peach<br />
+          UK<br />
+          ZO50 1MU<br />
+          Tel: 01234 567 890<br />
+          Mail: chris@nothers.com
+        </p>
+        <img src="/images/pic.jpg" />
+      </div>
+      <div class="card-footer">
+        <p>Editing, writing, web development services</p>
+      </div>
+    </div>
+
+    <button><p>This is cool box</p></button>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body onclick="">
+    <h1>Number guessing game</h1>
+    <p>
+      We have selected a random number between 1 and 100. See if <br />you can
+      guess it in 10 turns or fewer. We'll tell you if your <br />guess was too
+      high or too low.
+    </p>
+    <label for="guessAnumber">Enter a guess:</label>
+    <input type="text" id="num" name="" />
+    <button onclick="game()" id="submitButton">Submit guess</button>
+    <p id="preGuess"></p>
+    <p id="displayWR"></p>
+    <p id="lastGuess"></p>
+    <button id="newgameButton" onclick="newGame()">Start new game</button>
+    <script>
+      var i = 0;
+      var guessCount = "";
+      var userGuess;
+      document.getElementById("newgameButton").style.display = "none";
+      let randomNumber = Math.floor(Math.random() * 100) + 1;
+      console.log("value of random number", randomNumber);
+
+      function game() {
+        var x = document.getElementById("num").value;
+        console.log("value of x", x);
+        var userGuess = parseFloat(x);
+        console.log(typeof userGuess, userGuess);
+        // if (isNaN(userGuess) === true) {
+        //   let retuen;
+        // }
+        const numbers = [];
+        i++;
+        numbers[i] = document.getElementById("num").value;
+        console.log("value of i", i);
+
+        guessCount = guessCount + " " + numbers[i];
+        if (
+          userGuess > randomNumber ||
+          userGuess < randomNumber ||
+          userGuess == randomNumber
+        ) {
+          document.getElementById("preGuess").innerHTML =
+            "Previous guesses:" + " " + guessCount;
+          document.getElementById("displayWR").innerHTML = "wrong!";
+          document.getElementById("displayWR").style.background = "red";
+          document.getElementById("displayWR").style.color = "white";
+        }
+        if (userGuess < randomNumber) {
+          document.getElementById("lastGuess").innerHTML =
+            "Last guess was too low!";
+        }
+        if (userGuess > randomNumber) {
+          document.getElementById("lastGuess").innerHTML =
+            "Last guess was too high!";
+        }
+        if (userGuess == randomNumber) {
+          document.getElementById("displayWR").innerHTML =
+            "Congratulations! You got it right!";
+          document.getElementById("displayWR").style.background = "green";
+          document.getElementById("newgameButton").style.display = "block";
+          document.getElementById("num").disabled = true;
+          document.getElementById("submitButton").disabled = true;
+          document.getElementById("lastGuess").innerHTML = "";
+        }
+
+        if (i == 10) {
+          document.getElementById("displayWR").innerHTML = "!!!GAME OVER!!!";
+          document.getElementById("displayWR").style.background = "red";
+          document.getElementById("newgameButton").style.display = "block";
+          document.getElementById("num").disabled = true;
+          document.getElementById("submitButton").disabled = true;
+          document.getElementById("lastGuess").innerHTML = "";
+          document.getElementById("lastGuess").innerHTML = "";
+          i = 0;
+          guessCount = "";
+        }
+
+        document.getElementById("num").value = "";
+      }
+      function newGame() {
+        document.getElementById("num").disabled = false;
+        document.getElementById("submitButton").disabled = false;
+        document.getElementById("preGuess").innerHTML = "";
+        document.getElementById("displayWR").innerHTML = "";
+        document.getElementById("displayWR").style.background = "";
+        document.getElementById("displayWR").style.color = "";
+        document.getElementById("newgameButton").style.display = "none";
+        document.getElementById("preGuess").innerHTML = "";
+        i = 0;
+        guessCount = "";
+        location.reload();
+      }
+    </script>
+  </body>
+</html>

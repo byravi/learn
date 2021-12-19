@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: black;
+        color: #fff;
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100 vh;
+        margin: 0;
+      }
+      .movie-picker {
+        margin-top: 20px;
+      }
+      .movie-picker select {
+        background-color: #fff;
+        border-radius: 5px;
+        font-size: 14px;
+        margin-left: 10px;
+        padding: 5px 15px 5px 15px;
+        appearance: none;
+      }
+      .showseat {
+        background: rgba(0, 0, 0, 0.1);
+        padding: 5px 10px;
+        border-radius: 5px;
+        color: #777;
+        list-style-type: none;
+        display: flex;
+        margin-top: 29px;
+      }
+
+      .showseat li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 10px;
+      }
+      .showseat li small {
+        margin-left: 2px;
+      }
+
+      .seat {
+        background-color: #444451;
+        height: 12px;
+        width: 15px;
+        margin: 3px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+      .seat.selected {
+        background-color: #6feaf6;
+      }
+      .seat.occupied {
+        background-color: #fff;
+      }
+      .seat:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+      }
+      .screen {
+        width: 100%;
+        height: 70px;
+        background-color: #fff;
+        transform: rotateX(-45deg);
+        box-shadow: 0 3px 10px rgb(255 255 255 / 70%);
+      }
+      .screen-with-seat {
+        margin-top: 10px;
+        margin-bottom: 22px;
+      }
+      .row {
+        display: flex;
+      }
+      p.text span {
+        color: #6feaf6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="movie-picker">
+      <label>Pick a movie:</label>
+      <select id="movie">
+        <option value="10">Avengers: Endgame($10)</option>
+        <option value="12">Jocker($12)</option>
+        <option value="8">Toy story 4($8)</option>
+        <option value="9">The Lion King($9)</option>
+      </select>
+    </div>
+    <ul class="showseat">
+      <li>
+        <div class="seat"></div>
+        <small>N/A</small>
+      </li>
+      <li>
+        <div class="seat selected"></div>
+        <small>Selected</small>
+      </li>
+      <li>
+        <div class="seat occupied"></div>
+        <small>Occupied</small>
+      </li>
+    </ul>
+    <div class="screen-with-seat">
+      <div class="screen"></div>
+      <div class="row">
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div
+          class="seat"
+          style="margin-right: 23px"
+          onclick="updateSeat(this)"
+        ></div>
+        <div class="seat occupied"></div>
+        <div class="seat occupied"></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div
+          class="seat"
+          style="margin-right: 23px"
+          onclick="updateSeat(this)"
+        ></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+      </div>
+      <div class="row">
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div
+          class="seat"
+          style="margin-right: 23px"
+          onclick="updateSeat(this)"
+        ></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div class="seat occupied"></div>
+        <div class="seat occupied" style="margin-right: 23px"></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+      </div>
+      <div class="row">
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div
+          class="seat"
+          style="margin-right: 23px"
+          onclick="updateSeat(this)"
+        ></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div
+          class="seat"
+          style="margin-right: 23px"
+          onclick="updateSeat(this)"
+        ></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+      </div>
+      <div class="row">
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div
+          class="seat"
+          style="margin-right: 23px"
+          onclick="updateSeat(this)"
+        ></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div
+          class="seat"
+          style="margin-right: 23px"
+          onclick="updateSeat(this)"
+        ></div>
+        <div class="seat occupied"></div>
+        <div class="seat occupied"></div>
+      </div>
+      <div class="row">
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div
+          class="seat"
+          style="margin-right: 23px"
+          onclick="updateSeat(this)"
+        ></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div
+          class="seat"
+          style="margin-right: 23px"
+          onclick="updateSeat(this)"
+        ></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+      </div>
+      <div class="row">
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div
+          class="seat"
+          style="margin-right: 23px"
+          onclick="updateSeat(this)"
+        ></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div
+          class="seat"
+          style="margin-right: 23px"
+          onclick="updateSeat(this)"
+        ></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+        <div class="seat" onclick="updateSeat(this)"></div>
+      </div>
+    </div>
+    <p class="text">
+      you have selected <span id="count">0</span> seats for a price of $
+      <span id="total">0</span>
+    </p>
+    <script>
+      // var ticketCount, price;
+      // var seat = document.getElementsByClassName("seat");
+      // document.addEventListener("click", function () {});
+
+      // ticketCount = document.getElementById("count").innerHTML;
+      // ticketCount++;
+      function updateSeat(th) {
+        th.classList.contains("selected")
+          ? th.classList.remove("selected")
+          : th.classList.add("selected");
+        x = document.getElementById("movie").selectedIndex;
+        price = document.getElementsByTagName("option")[x].value;
+        var selectedClass =
+          document.getElementsByClassName("selected").length - 1;
+
+        // if (
+        //   th.classList.contains("selected") == true ||
+        //   ticketCount++ == true
+        // ) {
+        //   price1 = parseInt("price");
+        //   price2 = price1 + price1;
+
+        document.getElementById("total").innerHTML = price * selectedClass;
+        document.getElementById("count").innerHTML = selectedClass;
+        // document.getElementById("total").innerHTML = 0;
+        // document.getElementById("count").innerHTML = 0;
+        // th.classList.remove("selected");
+
+        // }
+        // if (th.classList.contains("selected") == false) {
+        //   ticketCount = document.getElementById("count").innerHTML;
+        //   ticketCount--;
+        //   document.getElementById("count").innerHTML = ticketCount;
+        // }
+      }
+      // x = document.getElementById("movie").selectedIndex;
+      // document.getElementsByTagName("option")[x].value;
+    </script>
+  </body>
+</html>

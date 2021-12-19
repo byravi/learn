@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      body {
+        background-color: #2c3e50;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      button {
+        position: absolute;
+        left: 33px;
+        bottom: 31px;
+        cursor: pointer;
+        border-radius: 4px;
+        padding: 5px 15px;
+      }
+
+      .header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        width: 100%;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+      }
+      select {
+        width: 200px;
+        padding: 5px;
+        appearance: none;
+        background-color: #a7c5e3;
+      }
+      .container {
+        background-color: #34495e;
+        padding: 20px;
+        position: relative;
+        text-align: center;
+        width: 500px;
+        box-shadow: 0 3px 5px rgb(0 0 0 / 30%);
+        color: #fff;
+        border-radius: 4px;
+      }
+      h2 {
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 8px;
+        margin: 0 0 40px;
+        border-radius: 4px;
+      }
+      h1 {
+        margin: 0;
+      }
+      input {
+        font-size: 14px;
+        width: 300px;
+        padding: 12px 20px;
+        margin-top: 10px;
+        border: 0;
+        border-radius: 4px;
+      }
+      .time {
+        position: absolute;
+        top: 60px;
+      }
+      .score {
+        position: absolute;
+        top: 60px;
+        right: 20px;
+      }
+      .end-game-container {
+        background-color: inherit;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+      .end-game-container button {
+        position: absolute;
+        left: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="setting-btn" class="setting-btn">
+      <i class="fa fa-cog" style="font-size: 14px"></i>
+    </button>
+    <div id="header" class="header">
+      <div>
+        <label for="difficulty">Difficulty</label>
+        <select id="difficulty">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+    </div>
+    <div class="container">
+      <h2>👩‍💻 Speed Typer 👨‍💻</h2>
+      <small>Type the following:</small>
+      <h1 id="typing-word">tense</h1>
+      <input
+        type="text"
+        id="text"
+        placeholder="Type the word here..."
+        onkeyup="typingGame()"
+      />
+      <div class="time">
+        <p>Time left: <span id="time-count">0s</span></p>
+      </div>
+      <div class="score">
+        <p>Score: <span id="score-count"> 0</span></p>
+      </div>
+      <div id="end-game-container" class="end-game-container"></div>
+    </div>
+    <script>
+      var typeWords = [
+        "sigh",
+        "tense",
+        "airplane",
+        "ball",
+        "pies",
+        "juice",
+        "warlike",
+        "bad",
+        "north",
+        "dependent",
+        "steer",
+        "silver",
+        "highfalutin",
+        "superficial",
+        "quince",
+        "eight",
+        "feeble",
+        "admit",
+        "drag",
+        "loving",
+      ];
+      var x = document.getElementById("difficulty").selectedIndex;
+      var difficultySelect = document.getElementsByTagName("option")[x].value;
+      var words = document.getElementById("typing-word");
+      var text = document.getElementById("text");
+      var scoreCount = document.getElementById("score-count");
+      var time = document.getElementById("time-count");
+      Math.floor(Math.random() * 19);
+      var timeCount = 10;
+      var timeInterval = setInterval(updateTime, 1000);
+      var endGame = document.getElementById("end-game-container");
+      var score = 0;
+      var typingGame, gameOver, updateTime;
+
+      function typingGame() {
+        // debugger;
+        if (words.innerHTML == text.value && difficultySelect == "easy") {
+          words.innerHTML = typeWords[Math.floor(Math.random() * 19)];
+          timeCount += 5;
+          document.getElementById("score-count").innerHTML = score++;
+          text.value = "";
+        }
+        if (words.innerHTML == text.value && difficultySelect == "medium") {
+          words.innerHTML = typeWords[Math.floor(Math.random() * 19)];
+          timeCount += 3;
+          document.getElementById("score-count").innerHTML = score++;
+          text.value = "";
+        }
+        if (words.innerHTML == text.value && difficultySelect == "hard") {
+          words.innerHTML = typeWords[Math.floor(Math.random() * 19)];
+          timeCount += 2;
+          document.getElementById("score-count").innerHTML = score++;
+          text.value = "";
+        }
+      }
+
+      function updateTime() {
+        timeCount--;
+        time.innerHTML = timeCount + "s";
+
+        if (timeCount === 0) {
+          clearInterval(timeInterval);
+          gameOver();
+        }
+      }
+      function gameOver() {
+        endGame.innerHTML = `
+          <h1>Time ran out</h1>
+          <p>Your final score is ${score}</p>
+          <button onclick="location.reload()">Reload</button>
+        `;
+        endGame.style.display = "flex";
+      }
+    </script>
+  </body>
+</html>

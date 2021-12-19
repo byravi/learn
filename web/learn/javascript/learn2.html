@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: #f7f7f7;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* justify-content: center; */
+        min-height: 100vh;
+        margin: 0;
+        font-family: "Lato", sans-serif;
+      }
+      .container {
+        margin: 30px auto;
+        width: 350px;
+      }
+      h4 {
+        margin: 0;
+        text-transform: uppercase;
+      }
+      h1 {
+        margin: 0;
+      }
+      .inc-exp-container {
+        display: flex;
+        justify-content: space-between;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        background-color: #fff;
+        padding: 20px;
+        margin: 20px 0;
+      }
+      .income {
+        border-right: 1px solid #bbb;
+        width: 104px;
+        position: relative;
+        left: 49px;
+      }
+      .expense {
+        border: 1px solid black;
+        border: none;
+        width: 118px;
+        position: relative;
+        left: 0px;
+      }
+      .money.add {
+        color: #2ecc71;
+      }
+      .money {
+        font-size: 20px;
+        letter-spacing: 1px;
+        margin: 5px 0;
+      }
+      .money.sub {
+        color: #c0392b;
+      }
+      h3 {
+        margin-top: 40px;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #bbb;
+      }
+      .list {
+        list-style-type: none;
+        padding: 0;
+        margin-bottom: 40px;
+      }
+      .list li {
+        background-color: #fff;
+        color: #333;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        padding: 10px;
+        margin: 10px 0;
+        height: 15px;
+      }
+      .delete-btn {
+        cursor: pointer;
+        background-color: #e74c3c;
+        border: 0;
+        color: #fff;
+        font-size: 20px;
+        line-height: 20px;
+        padding: 2px 5px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-100%, -50%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .list li:hover .delete-btn {
+        opacity: 1;
+      }
+      .text {
+        display: grid;
+        margin-top: 25px;
+      }
+      .text input {
+        height: 20px;
+        border: 1px solid #bbb;
+        margin-top: 9px;
+        padding: 10px;
+        font-size: 16px;
+      }
+      .amount {
+        display: grid;
+        margin-top: 10px;
+      }
+      .amount input {
+        border: 1px solid #bbb;
+        margin-top: 9px;
+        padding: 10px;
+        font-size: 16px;
+      }
+      .btn {
+        cursor: pointer;
+        background-color: #9c88ff;
+        color: #fff;
+        border: none;
+        display: block;
+        font-size: 16px;
+        margin: 10px 0 0px;
+        padding: 10px;
+        width: 95%;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Expense Tracker</h2>
+    <div class="container">
+      <h4>your balance</h4>
+      <h1 id="balance">$0.00</h1>
+      <div class="inc-exp-container">
+        <div class="income">
+          <h4>income</h4>
+          <p id="money-add" class="money add">$0.00</p>
+        </div>
+        <div class="expense">
+          <h4>expense</h4>
+          <p id="money-sub" class="money sub">$0.00</p>
+        </div>
+      </div>
+      <h3>History</h3>
+      <ul id="list" class="list"></ul>
+      <h3>Add new transaction</h3>
+      <form>
+        <div class="text">
+          <label>Text</label>
+          <input type="text" id="text" placeholder="Enter Text..." />
+        </div>
+        <div class="amount">
+          <label>Amount</label>
+          <label style="font-size: 15px"
+            >(negative-expense,positive-income)</label
+          >
+          <input type="number" id="amount" placeholder="Enter amount..." />
+          <a class="btn" onclick="addTransaction()">Add transaction</a>
+        </div>
+      </form>
+    </div>
+    <script>
+      var amountsIncome, amountsExpendr, amountsIncome1, amountsExpendr1, listV;
+      var textLabel = document.getElementById("text");
+      var transactionAmount = document.getElementById("amount");
+      var income = document.getElementById("money-add");
+      var expense = document.getElementById("money-sub");
+      var balance = document.getElementById("balance");
+      var listText = document.getElementById("list-txt");
+      var listV = document.getElementById("list-value");
+      amountsIncome = 0;
+      amountsExpendr = 0;
+      amountsIncome1 = 0;
+      amountsExpendr1 = 0;
+      // var ul = document.getElementById("list");
+      // var item = document.createElement("li");
+
+      function addTransaction() {
+        if (textLabel.value == "" || transactionAmount.value == "") {
+          alert("please add a text and amount");
+        }
+        if (transactionAmount.value > 0) {
+          amountsIncome = transactionAmount.value;
+          amountsIncome = parseInt(amountsIncome);
+          amountsIncome1 += amountsIncome;
+          income.innerHTML = "$" + amountsIncome1 + ".00";
+          var ul = document.getElementById("list");
+          var item = document.createElement("li");
+          item.innerHTML = `${textLabel.value}<span>${
+            "+" + transactionAmount.value
+          }</span><button class="delete-btn">x</button>`;
+          item.style.borderRight = "5px solid #2ecc71";
+          transactionAmount.value = "";
+          textLabel.value = "";
+        }
+        if (transactionAmount.value < 0) {
+          amountsExpendr = transactionAmount.value;
+          amountsExpendr = parseInt(amountsExpendr);
+          amountsExpendr1 += amountsExpendr;
+          expense.innerHTML = "$" + amountsExpendr1 * -1 + ".00";
+          var ul = document.getElementById("list");
+          var item = document.createElement("li");
+          item.innerHTML = `${
+            textLabel.value
+          }<span>${+transactionAmount.value}</span><button class="delete-btn" onclick="listRemove()">x</button>`;
+          item.style.borderRight = "5px solid #c0392b";
+          transactionAmount.value = "";
+          textLabel.value = "";
+        }
+
+        // amountsIncome = parseInt(amountsIncome);
+        // amountsExpendr = parseInt(amountsExpendr);
+        totalAmmount = amountsIncome1 + amountsExpendr1;
+        balance.innerHTML = "$" + totalAmmount + ".00";
+
+        ul.appendChild(item);
+        function listRemove() {
+          item.disabled = "true";
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      h1 {
+        font-family: helvetica, arial, sans-serif;
+        /* text-align: center; */
+      }
+      .full-img {
+        display: flex;
+        /* width: 640 px;
+        height: 480 px; */
+      }
+      .thumb-bar {
+        display: flex;
+        width: 100px;
+        height: 96px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="conatainer">
+      <h1>Image gallery example</h1>
+      <div class="full-img">
+        <img id="mainImg" src="/images/pic5.jpg" />
+      </div>
+      <div class="thumb-bar">
+        <img id="pic1" onclick="changeImage(this)" src="/images/pic1.jpg" />
+        <img id="pic2" onclick="changeImage(this)" src="/images/pic2.jpg" />
+        <img id="pic3" onclick="changeImage(this)" src="/images/pic3.jpg" />
+        <img id="pic4" onclick="changeImage(this)" src="/images/pic4.jpg" />
+        <img id="pic5" onclick="changeImage(this)" src="/images/pic5.jpg" />
+      </div>
+    </div>
+
+    <script>
+      //  function displayImg1() {
+      //    document.getElementById("mainImg").src = "/images/pic1.jpg";
+      //  }
+      //  function displayImg2() {
+      //    document.getElementById("mainImg").src = "/images/pic2.jpg";
+      //  }
+      //  function displayImg3() {
+      //    document.getElementById("mainImg").src = "/images/pic3.jpg";
+      //  }
+      //  function displayImg4() {
+      //    document.getElementById("mainImg").src = "/images/pic4.jpg";
+      //  }
+      //  function displayImg5() {
+      //    document.getElementById("mainImg").src = "/images/pic5.jpg";
+      //  }
+
+      function changeImage(th) {
+        document.getElementById("mainImg").src = th.src;
+      }
+    </script>
+  </body>
+</html>

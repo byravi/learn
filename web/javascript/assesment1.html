@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      .text-name {
+        font-size: 17px;
+        font-weight: 600;
+      }
+      #customname {
+        height: 30px;
+      }
+      .radio-button {
+        margin-top: 10px;
+        margin-bottom: 22px;
+        font-weight: 600;
+      }
+      p {
+        width: 350px;
+        height: 130px;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <label for="customname" class="text-name">Enter custom name:</label>
+      <input id="customname" type="text" placeholder="" />
+    </div>
+    <div class="radio-button">
+      <input type="radio" id="us" name="#" value="us" checked />
+      <label for="us">US</label>
+      <input type="radio" id="uk" name="#" value="uk" />  
+      <label for="uk">UK</label>
+    </div>
+    <div>
+      <button class="randomize" onclick="show()">Generate random story</button>
+    </div>
+    <p id="story"></p>
+    <script src="assesment1.js"></script>
+  </body>
+</html>
